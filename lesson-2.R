@@ -8,51 +8,60 @@ vals <- seq(from = 1,
 
 ## Vectors
 
-counts ...
+counts <- c(4,3,7,5)
 
 ## Lists
 
-... <- list(...)
-... <- ...(list(1, 2), c(3, 4))
+x <- list(list(1,2),c(3,4))
+y <- c(list(1, 2), c(3, 4))
 
 ## Factors
 
-education <- ...(c("college", "highschool", "college", "middle"),
-                 ... = c("middle", "highschool", ...),
-                 ...)
+education <- factor (c("college", "highschool", "college", "middle"),
+                 levels = c("middle", "highschool", "college"),
+                 ordered=TRUE)
 
 ## Data Frames
 
-... data.frame(...)
+df <- data.frame(education, counts)
 
 ## Exercise 1
 
-...
+species <- c("cat","dog")
+count <- c(3,4)
+data <- data.frame(species,count)
+View(data)
+structure(data)
 
 ## Names
 
-names(...) <- ...
+names(df) <- c("ed", "ct") 
+
+df[3,"ct"]
 
 ## Subsetting ranges
 
 days <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-weekdays <- ...
-...
+weekdays <- days[2:6]
+weekend <- days[c(1,7)]
 
 ## Exercise 2
 
-...
+weekdays <- days[c(-1,-7)]
+MWF <- days[seq(from =2, to=6, by=2)]
 
 ## Anatomy of a function
 
-function(...) {
-  ...
-  return(...)
+first <- function(x) {
+  result <- x[1,1]
+  return(result)
 }
 
 ## Exercise 3
 
-...
+education[c(2,1)]
+
+new_ed <- df[c(2:3),1]
 
 ## Distributions and statistics
 
@@ -78,9 +87,9 @@ requirements <- c('dplyr',
                   'sp',
                   'tidyr',
                   'tmap')
-missing <- setdiff(...,
+missing <- setdiff(requirements,
                    rownames(installed.packages()))
 
-if (...) {
+if (length(missing) !=0) {
   install.packages(missing)
 }
