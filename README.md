@@ -1,3 +1,7 @@
+This was the original readme that was cloned from github, and then I edited it in R Studio.
+
+
+
 # Welcome to a SESYNC Training Event
 
 Once you have cloned this repository, why don't you push it back up to your own GitHub repo?
