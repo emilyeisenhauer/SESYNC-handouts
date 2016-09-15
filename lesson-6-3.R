@@ -12,8 +12,13 @@ in1 <- selectInput("pick_species",
                    choices = unique(species[["species_id"]]))
 out1 <- textOutput("species")
 out2 <- plotOutput("species_plot")
-tab <- tabPanel("Species", in1, out1, out2)
-ui <- navbarPage(title = "Portal Project", tab)
+side <- sidebarPanel("Options",in1)
+main <- mainPanel(out1,out2)
+out4 <- dataTableOutput("species_plot_data")
+tab <- tabPanel("Species", 
+                sidebarLayout(side,main))
+tab2 <- tabPanel("Data", out4)
+ui <- navbarPage(title = "Portal Project", tab, tab2)
 
 # Server
 server <- function(input, output) {
@@ -28,6 +33,10 @@ server <- function(input, output) {
       filter(species_id == input[["pick_species"]])%>%
       select(genus, species) %>%
       paste(collapse=" ")
+  )
+  output[["species_plot_data"]] <- renderDataTable(
+    surveys %>%
+      filter(species_id == input[["pick_species"]])
   )
 }
 
